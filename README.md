@@ -1,44 +1,138 @@
-# Scavenger Hunt Announcer
+# Scav Hunt Announcer
 
-This application reads a PDF file containing a scavenger hunt list and announces each item every 2 hours using text-to-speech.
+A Python application for managing and announcing items from the University of Chicago Scavenger Hunt list. Available in both GUI and command-line interfaces.
+
+## Features
+
+### GUI Version
+- Modern, user-friendly interface with intuitive controls
+- Real-time preview of selected items
+- Advanced voice control settings:
+  - Voice selection from system voices
+  - Speech rate adjustment (50-300)
+  - Volume control (0-100%)
+  - Voice testing capability
+- Multiple item selection methods:
+  - By page numbers
+  - By item numbers
+  - Random selection
+- Announcement history tracking
+- Scheduled announcements with configurable intervals
+- Visual feedback and status updates
+
+### Command-Line Version
+- Interactive menu-driven interface
+- Multiple selection methods
+- Text-to-speech announcements
+- Configurable announcement intervals
+- History tracking
 
 ## Requirements
 
 - Python 3.6 or higher
-- A PDF file containing your scavenger hunt list (one item per line)
+- macOS (for text-to-speech functionality)
+- Required Python packages:
+  - PyQt5 (for GUI version)
+  - PyPDF2
+  - schedule
 
 ## Installation
 
-1. Clone this repository or download the files
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+1. Clone the repository:
+```bash
+git clone https://github.com/andrewlidong/scav-hunt-announcer.git
+cd scav-hunt-announcer
+```
+
+2. Install required packages:
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
 
-1. Run the script:
-   ```bash
-   python scav_announcer.py
-   ```
-2. When prompted, enter the full path to your PDF file
-3. The application will:
-   - Read all items from the PDF
-   - Announce the first item immediately
-   - Continue announcing items every 2 hours
-   - Loop back to the beginning when all items have been announced
+### GUI Version
 
-## Features
+1. Start the GUI application:
+```bash
+python scav_announcer_gui.py
+```
 
-- Reads PDF files and extracts text
-- Announces items using text-to-speech
-- Runs continuously, announcing items every 2 hours
-- Shows current time with each announcement
-- Automatically loops through the list
-- Prints announcements to console as well as speaking them
+2. Using the GUI:
+   - **Select Items**:
+     - Enter page numbers (e.g., "1,2,3") and click "Select by Pages"
+     - Use the item number range selector
+     - Choose number of random items and click "Select Random"
+   
+   - **Voice Settings**:
+     - Choose a voice from the dropdown
+     - Adjust speech rate (50-300)
+     - Control volume using the slider
+     - Test settings with "Test Voice" button
+   
+   - **Announcements**:
+     - Click "Announce Now" for immediate announcement
+     - Use "Start Announcements" for scheduled announcements
+     - "Stop Announcements" to end scheduled announcements
+   
+   - **Monitor**:
+     - View selected items in the preview section
+     - Check announcement history in the bottom section
+     - See next scheduled announcement time
 
-## Notes
+### Command-Line Version
 
-- Make sure your PDF file is readable and contains text (not scanned images)
-- Each item should be on a separate line in the PDF
-- The application will keep running until you stop it (Ctrl+C) 
+1. Run the command-line interface:
+```bash
+python scav_announcer.py
+```
+
+2. Follow the menu options to:
+   - Select items by page numbers
+   - Select items by item numbers
+   - Select random items
+   - Start/stop announcements
+   - Preview current selection
+
+## Configuration
+
+Settings can be customized in `config.py`:
+
+```python
+# Default settings
+DEFAULT_PDF_PATH = "scav_lists/2024.pdf"
+ANNOUNCEMENT_INTERVAL_HOURS = 2
+MAX_PREVIEW_ITEMS = 5
+MAX_ITEM_PREVIEW_LENGTH = 100
+
+# Text-to-speech settings
+TTS_VOICE = "Samantha"  # Default voice
+TTS_RATE = 150  # Speech rate (50-300)
+TTS_VOLUME = 1.0  # Volume level (0.0 to 1.0)
+```
+
+## PDF Format
+
+Place your scavenger hunt list PDF in the `scav_lists` directory. The PDF should have:
+- One item per line
+- Clear page numbers
+- Consistent formatting
+
+A sample PDF (`scav_lists/sample.pdf`) is provided for reference.
+
+## Troubleshooting
+
+1. **Voice Issues**:
+   - Ensure macOS text-to-speech is enabled
+   - Try different voices from the system
+   - Adjust rate if speech is unclear
+
+2. **PDF Reading Issues**:
+   - Verify PDF format matches requirements
+   - Check file permissions
+   - Ensure PDF is not password-protected
+
+3. **GUI Issues**:
+   - Verify PyQt5 installation
+   - Check system requirements
+   - Try reinstalling dependencies
