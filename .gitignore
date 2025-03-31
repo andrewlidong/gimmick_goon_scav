@@ -34,7 +34,10 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+.directory
 
 # Project specific
+*.log
+announcement_history.json
 scav_lists/*.pdf
-*.log 
+!scav_lists/sample.pdf  # Keep the sample PDF 

@@ -1,4 +1,4 @@
-PyPDF2==3.0.1
+PyPDF2>=3.0.0
 pyttsx3==2.90
-schedule==1.2.0
-PyQt5==5.15.9 
+schedule>=1.2.0
+PyQt5>=5.15.0 
